@@ -42,9 +42,9 @@
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build && npm run docs:build",
     "release": "npm run build && npm run sbom && npm run scan && npm run licenses && npm run release:assets",
     "release:assets": "node scripts/create-release-assets.mjs",
-    "sbom": "mkdir -p security && syft file:package-lock.json --output spdx-json > security/sbom.spdx.json",
+    "sbom": "node scripts/create-prod-sbom.mjs",
     "scan": "mkdir -p security && grype sbom:security/sbom.spdx.json -o json > security/grype-report.json",
-    "licenses": "mkdir -p security && grant check security/sbom.spdx.json --config .grant.yaml > security/grant-report.txt",
+    "licenses": "mkdir -p security && grant check security/sbom.spdx.json --config .grant.yaml > security/grant-report.txt || { cat security/grant-report.txt; exit 1; }",
     "precommit": "npm run lint && npm run typecheck && npm run test",
     "prepare": "husky",
     "docs:install": "npm --prefix docs ci"
