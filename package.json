@@ -27,9 +27,9 @@
   "homepage": "https://github.com/mikaelvesavuori/mikrodocs#readme",
   "scripts": {
     "start": "npm run build && npx http-server dist -a ${HOST:-127.0.0.1} -p ${PORT:-8000} -c-1",
-    "docs": "npm --prefix docs run dev",
-    "docs:build": "npm --prefix docs run build",
-    "docs:preview": "npm --prefix docs run preview",
+    "docs": "npm run docs:install && npm --prefix docs run dev",
+    "docs:build": "npm run docs:install && npm --prefix docs run build",
+    "docs:preview": "npm run docs:install && npm --prefix docs run preview",
     "clean": "rm -rf dist coverage",
     "assets": "node ../scripts/generate-product-icons.mjs --product mikrodocs",
     "build": "tsx esbuild.config.mts",
@@ -46,7 +46,8 @@
     "scan": "mkdir -p security && grype sbom:security/sbom.spdx.json -o json > security/grype-report.json",
     "licenses": "mkdir -p security && grant check security/sbom.spdx.json --config .grant.yaml > security/grant-report.txt",
     "precommit": "npm run lint && npm run typecheck && npm run test",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docs:install": "npm --prefix docs ci"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
