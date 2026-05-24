@@ -1,0 +1,32 @@
+---
+title: Installation
+description: Download and run MikroDocs locally or on a static host.
+---
+
+MikroDocs ships as a static browser app. No account server or API is required.
+
+:::tip[Use MikroDocs Online]
+Open [docs.mikrosuite.com](https://docs.mikrosuite.com) to use MikroDocs online for free. It runs directly in the browser over HTTPS, requires no account, and stores documents privately in browser storage for that site.
+:::
+
+## Prerequisites
+
+- Node.js 24 or later
+- A static file server for local testing.
+
+## Quick Start
+
+```bash
+curl -sSL -o mikrodocs.zip https://releases.mikrosuite.com/mikrodocs_latest.zip
+unzip mikrodocs.zip -d mikrodocs
+cd mikrodocs/*
+npx http-server . -a 127.0.0.1 -p 8000 -c-1
+```
+
+The local server starts at `http://127.0.0.1:8000`.
+
+## Release Downloads
+
+The latest release archive is available from GitHub Releases and this stable URL:
+
+- `https://releases.mikrosuite.com/mikrodocs_latest.zip`

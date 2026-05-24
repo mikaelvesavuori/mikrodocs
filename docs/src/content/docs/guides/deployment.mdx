@@ -1,0 +1,42 @@
+---
+title: Deployment
+description: Deploy MikroDocs as a static local-first web app.
+---
+
+MikroDocs ships as static files and can be served from any static host.
+
+## Download
+
+```bash
+curl -sSL -o mikrodocs.zip https://releases.mikrosuite.com/mikrodocs_latest.zip
+unzip mikrodocs.zip -d mikrodocs
+```
+
+Deploy the extracted app files:
+
+- `index.html`
+- `assets/main.js`
+- `assets/styles.css`
+- copied static assets
+
+## Serve Locally
+
+```bash
+cd mikrodocs/*
+npx http-server . -a 127.0.0.1 -p 8000 -c-1
+```
+
+This serves the extracted app at `http://127.0.0.1:8000`.
+
+## Serving Online
+
+You can serve the app from `dist/` using pretty much any static hosting provider or solution:
+
+- Cloudflare Pages
+- Netlify
+- Vercel
+- nginx, Caddy, Apache, or any static file server
+
+## Storage Origin
+
+Documents are stored locally for the current browser profile and origin. Use a stable, trusted domain for any long-running deployment. Moving the app to another domain gives the browser a separate storage scope, so export a backup before changing origins.

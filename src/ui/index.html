@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MikroDocs</title>
+    <meta name="description" content="A local-first writing app for Markdown documents, library workflows, and portable exports." />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link rel="icon" href="./favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)" />
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-plus" viewBox="0 0 24 24">
+        <path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-folder-open" viewBox="0 0 24 24">
+        <path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h3.294a2.25 2.25 0 0 1 1.591.659l1.206 1.205a2.25 2.25 0 0 0 1.591.659H18A2.25 2.25 0 0 1 20.25 9.27v7.98A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-list-tree" viewBox="0 0 24 24">
+        <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-sun" viewBox="0 0 24 24">
+        <path d="M12 3v1.5m0 15V21m8.485-8.485H21m-18 0H3m15.364-6.364 1.06-1.06M4.576 19.425l1.06-1.06m12.728 0 1.06 1.06M4.576 4.575l1.06 1.06M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-moon" viewBox="0 0 24 24">
+        <path fill="currentColor" stroke="none" d="M12 20.5a8.5 8.5 0 0 0 8.5-8.5c0-.7-.1-1.05-.43-1.05-.2 0-.36.12-.56.22a5.8 5.8 0 0 1-2.58.58 4.68 4.68 0 0 1-4.68-4.68c0-.94.2-1.8.58-2.58.1-.2.22-.36.22-.56 0-.33-.35-.43-1.05-.43a8.5 8.5 0 1 0 0 17Z" />
+      </symbol>
+      <symbol id="icon-x-mark" viewBox="0 0 24 24">
+        <path d="m6 18 12-12M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-list" viewBox="0 0 24 24">
+        <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-check-square" viewBox="0 0 24 24">
+        <path d="M9 11.5 11.2 14 16 8.75M5.25 4.5h13.5c.414 0 .75.336.75.75v13.5a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V5.25c0-.414.336-.75.75-.75Z" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-quote" viewBox="0 0 24 24">
+        <path d="M9 7.5H6.75A2.25 2.25 0 0 0 4.5 9.75v1.5h3A1.5 1.5 0 0 1 9 12.75v3A1.5 1.5 0 0 1 7.5 17.25h-3v-7.5M19.5 7.5h-2.25A2.25 2.25 0 0 0 15 9.75v1.5h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3v-7.5" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-link" viewBox="0 0 24 24">
+        <path d="M9.75 14.25 14.25 9.75M10.5 6.75l.61-.61a4.5 4.5 0 0 1 6.36 6.36l-.97.97M13.5 17.25l-.61.61a4.5 4.5 0 1 1-6.36-6.36l.97-.97" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-code" viewBox="0 0 24 24">
+        <path d="m8.25 8.25-4.5 3.75 4.5 3.75M15.75 8.25l4.5 3.75-4.5 3.75M13.5 4.5l-3 15" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-divider" viewBox="0 0 24 24">
+        <path d="M4.5 12h15" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-table" viewBox="0 0 24 24">
+        <path d="M4.5 5.25h15v13.5h-15zM4.5 10.5h15M9.5 5.25v13.5M14.5 5.25v13.5" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-image" viewBox="0 0 24 24">
+        <path d="M4.5 6.75A2.25 2.25 0 0 1 6.75 4.5h10.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25H6.75a2.25 2.25 0 0 1-2.25-2.25V6.75Zm3 9 3.5-3.5 2.25 2.25 2.75-3.25 3.5 4.5M8.25 8.25h.01" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24">
+        <path d="M4 7h16m-10 4v6m4-6v6M9 7V5h6v2m-9 0 1 14h10l1-14" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <path d="M8 8h11v11H8zM5 16H4V4h12v1" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-file-up" viewBox="0 0 24 24">
+        <path d="M14 3v5h5M14 3H6v18h12V8l-4-5ZM12 17V10m-3 3 3-3 3 3" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24">
+        <path d="M4 16.5v2A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5v-2M12 15V3m-4 4 4-4 4 4" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M4 16.5v2A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5v-2M12 3v12m-4-4 4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+    </svg>
+    <div class="app-shell">
+      <header class="top-actions" aria-label="Document actions">
+        <div class="brand-mark">
+          <span>MikroDocs</span>
+          <input id="title-input" class="title-input" aria-label="Document title" />
+        </div>
+        <div class="action-cluster">
+          <button id="new-doc-btn" class="button icon-button" type="button" title="New document" aria-label="New document"><svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg></button>
+          <button id="library-btn" class="button icon-button" type="button" title="Library" aria-label="Open library"><svg class="icon" aria-hidden="true"><use href="#icon-folder-open"></use></svg></button>
+          <button id="outline-btn" class="button icon-button" type="button" title="Outline" aria-label="Open outline"><svg class="icon" aria-hidden="true"><use href="#icon-list-tree"></use></svg></button>
+          <button id="theme-btn" class="button icon-button" type="button" title="Toggle theme" aria-label="Toggle theme"><svg class="icon" aria-hidden="true"><use id="theme-icon" href="#icon-moon"></use></svg></button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="writing-column" aria-label="Writing editor">
+          <div class="editor-shell">
+            <div id="pretty-editor" class="pretty-editor" aria-hidden="true"></div>
+            <textarea id="editor" class="editor" spellcheck="true" aria-label="Markdown editor"></textarea>
+          </div>
+        </section>
+        <article id="print-preview" class="print-preview prose" aria-hidden="true"></article>
+      </main>
+
+      <nav class="floating-toolbar" aria-label="Formatting tools">
+        <button class="tool-button" data-command="bold" type="button" title="Bold (Ctrl/Cmd+B)" aria-label="Bold">B</button>
+        <button class="tool-button italic" data-command="italic" type="button" title="Italic (Ctrl/Cmd+I)" aria-label="Italic">I</button>
+        <button class="tool-button" data-command="heading" type="button" title="Heading" aria-label="Heading">H</button>
+        <button class="tool-button" data-command="list" type="button" title="List" aria-label="List"><svg class="icon" aria-hidden="true"><use href="#icon-list"></use></svg></button>
+        <button class="tool-button" data-command="checklist" type="button" title="Checklist" aria-label="Checklist"><svg class="icon" aria-hidden="true"><use href="#icon-check-square"></use></svg></button>
+        <button class="tool-button" data-command="quote" type="button" title="Quote" aria-label="Quote"><svg class="icon" aria-hidden="true"><use href="#icon-quote"></use></svg></button>
+        <button class="tool-button" data-command="link" type="button" title="Link" aria-label="Link"><svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg></button>
+        <button class="tool-button" data-command="code" type="button" title="Code block" aria-label="Code block"><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg></button>
+        <button class="tool-button" data-command="divider" type="button" title="Divider" aria-label="Divider"><svg class="icon" aria-hidden="true"><use href="#icon-divider"></use></svg></button>
+        <button class="tool-button" data-command="table" type="button" title="Table" aria-label="Table"><svg class="icon" aria-hidden="true"><use href="#icon-table"></use></svg></button>
+        <button class="tool-button" data-command="image" type="button" title="Image" aria-label="Image"><svg class="icon" aria-hidden="true"><use href="#icon-image"></use></svg></button>
+      </nav>
+
+      <section class="floating-status" aria-label="Document statistics">
+        <span id="word-count">0 words</span>
+        <span id="reading-time">1 min</span>
+      </section>
+    </div>
+
+    <dialog id="library-dialog" class="side-dialog library-dialog" aria-label="Document library">
+      <div class="dialog-head">
+        <h2>Library</h2>
+        <button class="button icon-button" type="button" data-close-dialog="library-dialog" aria-label="Close library"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <input id="library-search" class="search-input" placeholder="Search documents" aria-label="Search documents" />
+      <div id="tag-filter-list" class="tag-filter-list" aria-label="Tag filters"></div>
+      <div id="document-list" class="document-list"></div>
+      <div class="dialog-actions">
+        <button id="import-md-btn" class="button icon-button" type="button" title="Import file" aria-label="Import file"><svg class="icon" aria-hidden="true"><use href="#icon-file-up"></use></svg></button>
+        <button id="import-backup-btn" class="button icon-button" type="button" title="Import backup" aria-label="Import backup"><svg class="icon" aria-hidden="true"><use href="#icon-upload"></use></svg></button>
+        <button id="backup-btn" class="button icon-button" type="button" title="Export backup" aria-label="Export backup"><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg></button>
+        <input id="file-input" class="visually-hidden" type="file" accept=".md,.markdown,.txt,.docx,text/markdown,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+        <input id="backup-input" class="visually-hidden" type="file" accept=".json,application/json" />
+      </div>
+    </dialog>
+
+    <dialog id="history-dialog" class="side-dialog history-dialog" aria-label="Version history">
+      <div class="dialog-head">
+        <h2>History</h2>
+        <button class="button icon-button" type="button" data-close-dialog="history-dialog" aria-label="Close history"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </dialog>
+
+    <dialog id="history-preview-dialog" class="settings-dialog history-preview-dialog" aria-label="Version preview">
+      <div class="dialog-head">
+        <h2>Version Preview</h2>
+        <button class="button icon-button" type="button" data-close-dialog="history-preview-dialog" aria-label="Close version preview"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <div id="history-preview-summary" class="review-summary"></div>
+      <pre id="history-preview-content" class="snapshot-preview"></pre>
+      <div class="dialog-actions">
+        <button id="restore-preview-btn" class="button" type="button">Restore</button>
+      </div>
+    </dialog>
+
+    <dialog id="data-safety-dialog" class="settings-dialog data-safety-dialog" aria-label="Storage and backups">
+      <div class="dialog-head">
+        <h2>Storage &amp; Backups</h2>
+        <button class="button icon-button" type="button" data-close-dialog="data-safety-dialog" aria-label="Close storage and backups"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <div id="data-safety-summary" class="review-summary"></div>
+      <div class="dialog-actions stacked-actions">
+        <button id="persist-storage-btn" class="button" type="button">Keep Offline</button>
+        <button id="export-all-md-btn" class="button" type="button">Export Markdown ZIP</button>
+        <button id="data-backup-btn" class="button" type="button">Export Backup</button>
+      </div>
+    </dialog>
+
+    <dialog id="backup-review-dialog" class="settings-dialog" aria-label="Review backup import">
+      <div class="dialog-head">
+        <h2>Import Backup</h2>
+        <button class="button icon-button" type="button" data-close-dialog="backup-review-dialog" aria-label="Close backup import"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <div id="backup-review-summary" class="review-summary"></div>
+      <div class="dialog-actions">
+        <button id="backup-append-btn" class="button" type="button">Append</button>
+        <button id="backup-replace-btn" class="button danger-button" type="button">Replace All</button>
+      </div>
+    </dialog>
+
+    <dialog id="find-dialog" class="side-dialog find-dialog" aria-label="Find in document">
+      <div class="dialog-head">
+        <h2>Find &amp; Replace</h2>
+        <button class="button icon-button" type="button" data-close-dialog="find-dialog" aria-label="Close find"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <input id="find-input" class="search-input" placeholder="Search current document" aria-label="Search current document" />
+      <input id="replace-input" class="search-input" placeholder="Replace with" aria-label="Replace with" />
+      <div class="dialog-actions">
+        <button id="replace-next-btn" class="button" type="button">Replace Next</button>
+        <button id="replace-all-btn" class="button" type="button">Replace All</button>
+      </div>
+      <div id="find-list" class="find-list"></div>
+    </dialog>
+
+    <dialog id="link-dialog" class="settings-dialog" aria-label="Insert link">
+      <div class="dialog-head">
+        <h2>Link</h2>
+        <button class="button icon-button" type="button" data-close-dialog="link-dialog" aria-label="Close link dialog"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <label>
+        Label
+        <input id="link-label-input" type="text" placeholder="Readable label" />
+      </label>
+      <label>
+        Type
+        <select id="link-kind-select">
+          <option value="external">External URL</option>
+          <option value="internal">Current document heading</option>
+          <option value="document">Local document</option>
+        </select>
+      </label>
+      <label>
+        Target
+        <input id="link-target-input" type="text" list="link-target-options" placeholder="https://, #section, or document title" />
+        <datalist id="link-target-options"></datalist>
+      </label>
+      <div class="dialog-actions">
+        <button id="insert-link-btn" class="button" type="button">Insert Link</button>
+      </div>
+    </dialog>
+
+    <dialog id="table-dialog" class="settings-dialog" aria-label="Insert table">
+      <div class="dialog-head">
+        <h2>Table</h2>
+        <button class="button icon-button" type="button" data-close-dialog="table-dialog" aria-label="Close table dialog"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <div class="field-grid">
+        <label>
+          Columns
+          <input id="table-columns-input" type="number" min="1" max="8" value="3" />
+        </label>
+        <label>
+          Rows
+          <input id="table-rows-input" type="number" min="0" max="20" value="2" />
+        </label>
+      </div>
+      <div class="dialog-actions">
+        <button id="insert-table-btn" class="button" type="button">Insert Table</button>
+      </div>
+    </dialog>
+
+    <dialog id="image-dialog" class="settings-dialog" aria-label="Insert image">
+      <div class="dialog-head">
+        <h2>Image</h2>
+        <button class="button icon-button" type="button" data-close-dialog="image-dialog" aria-label="Close image dialog"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <label>
+        Source
+        <input id="image-source-input" type="url" placeholder="https://... or image path" />
+      </label>
+      <label>
+        Description
+        <input id="image-alt-input" type="text" placeholder="Image description" />
+      </label>
+      <label>
+        Caption
+        <input id="image-caption-input" type="text" placeholder="Caption" />
+      </label>
+      <label>
+        Layout
+        <select id="image-layout-select">
+          <option value="contained">Contained</option>
+          <option value="wide">Wide</option>
+          <option value="small">Small</option>
+        </select>
+      </label>
+      <div class="dialog-actions">
+        <button id="insert-image-btn" class="button" type="button">Insert Image</button>
+      </div>
+    </dialog>
+
+    <dialog id="outline-dialog" class="side-dialog outline-dialog" aria-label="Document outline">
+      <div class="dialog-head">
+        <h2>Outline</h2>
+        <button class="button icon-button" type="button" data-close-dialog="outline-dialog" aria-label="Close outline"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <div id="outline-list" class="outline-list"></div>
+      <div class="dialog-section-label">Links</div>
+      <div id="link-list" class="link-list"></div>
+      <div class="dialog-section-label">Backlinks</div>
+      <div id="backlink-list" class="backlink-list"></div>
+    </dialog>
+
+    <dialog id="shortcuts-dialog" class="settings-dialog" aria-label="Keyboard shortcuts">
+      <div class="dialog-head">
+        <h2>Shortcuts</h2>
+        <button class="button icon-button" type="button" data-close-dialog="shortcuts-dialog" aria-label="Close shortcuts"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <div class="shortcut-list">
+        <div><kbd>Cmd/Ctrl K</kbd><span>Command palette</span></div>
+        <div><kbd>Cmd/Ctrl S</kbd><span>Save</span></div>
+        <div><kbd>Cmd/Ctrl F</kbd><span>Find in document</span></div>
+        <div><kbd>Cmd/Ctrl O</kbd><span>Library</span></div>
+        <div><kbd>Cmd/Ctrl N</kbd><span>New document</span></div>
+        <div><kbd>Cmd/Ctrl B</kbd><span>Bold</span></div>
+        <div><kbd>Cmd/Ctrl I</kbd><span>Italic</span></div>
+        <div><kbd>Cmd/Ctrl P</kbd><span>Print or save PDF</span></div>
+        <div><kbd>Tab</kbd><span>Indent list item</span></div>
+        <div><kbd>Shift Tab</kbd><span>Outdent list item</span></div>
+        <div><kbd>?</kbd><span>Shortcuts</span></div>
+      </div>
+    </dialog>
+
+    <dialog id="settings-dialog" class="settings-dialog" aria-label="Writing settings">
+      <div class="dialog-head">
+        <h2>Settings</h2>
+        <button class="button icon-button" type="button" data-close-dialog="settings-dialog" aria-label="Close settings"><svg class="icon" aria-hidden="true"><use href="#icon-x-mark"></use></svg></button>
+      </div>
+      <label>
+        Font
+        <select id="font-select">
+          <option value="system">System</option>
+          <option value="serif">Serif</option>
+          <option value="mono">Mono</option>
+        </select>
+      </label>
+      <label>
+        Font scale
+        <input id="font-scale" type="range" min="0.85" max="1.3" step="0.05" />
+      </label>
+      <label class="toggle-row">
+        <input id="autosave-toggle" type="checkbox" />
+        Autosave
+      </label>
+      <label class="toggle-row">
+        <input id="source-mode-toggle" type="checkbox" />
+        Source mode
+      </label>
+    </dialog>
+
+    <dialog id="command-dialog" class="command-dialog" aria-label="Command palette">
+      <div class="command-head">
+        <label for="command-input">Command</label>
+        <input id="command-input" class="command-input" autocomplete="off" />
+      </div>
+      <div id="command-list" class="command-list" role="listbox"></div>
+      <div class="command-foot">Enter to run · Esc to close</div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./assets/main.js"></script>
+  </body>
+</html>

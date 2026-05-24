@@ -1,0 +1,10 @@
+---
+title: Authentication
+description: Authentication boundary for MikroDocs.
+---
+
+MikroDocs does not include application accounts or sign-in. Documents stay in browser-local storage unless the user imports, exports, or backs them up.
+
+If a hosted deployment needs access control, put MikroDocs behind the hosting provider's auth, a private network, or a reverse proxy. The app does not need to know about that outer access layer.
+
+This keeps document storage local and avoids mixing account state with Markdown files.

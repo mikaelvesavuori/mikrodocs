@@ -1,0 +1,10 @@
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self'; manifest-src 'self'; frame-ancestors 'none'; form-action 'none'; trusted-types mikrodocs; require-trusted-types-for 'script'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cache-Control: no-store
+
+/assets/*
+  Cache-Control: public, max-age=3600

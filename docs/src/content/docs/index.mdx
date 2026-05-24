@@ -1,0 +1,47 @@
+---
+title: MikroDocs
+description: Local-first writing for Markdown documents.
+template: splash
+hero:
+  tagline: MikroDocs is a minimalist, local-first writing app for Markdown documents.
+  image:
+    light: ../../assets/logo.svg
+    dark: ../../assets/logo.svg
+  actions:
+    - text: Get Started
+      link: /docs/docs/getting-started/intro
+      icon: rocket
+    - text: Installation
+      link: /docs/docs/getting-started/installation
+      icon: laptop
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="Getting Started" icon="open-book">
+    Set up MikroDocs and start writing.
+
+    <LinkCard title="What is MikroDocs?" href="/docs/docs/getting-started/intro" />
+    <LinkCard title="Installation" href="/docs/docs/getting-started/installation" />
+  </Card>
+
+  <Card title="Guides" icon="puzzle">
+    Deep dives into MikroDocs features.
+
+    <LinkCard title="Configuration" href="/docs/docs/guides/configuration" />
+    <LinkCard title="Authentication" href="/docs/docs/guides/authentication" />
+    <LinkCard title="Writing in MikroDocs" href="/docs/docs/guides/writing" />
+    <LinkCard title="Import and Export" href="/docs/docs/guides/import-export" />
+    <LinkCard title="Local Data and Backups" href="/docs/docs/guides/local-data" />
+    <LinkCard title="Deployment" href="/docs/docs/guides/deployment" />
+  </Card>
+
+  <Card title="References" icon="document">
+    Complete API and configuration documentation.
+
+    <LinkCard title="Privacy and Security" href="/docs/docs/reference/privacy-security" />
+    <LinkCard title="Architecture" href="/docs/docs/reference/architecture" />
+    <LinkCard title="Comparison" href="/docs/docs/reference/comparison" />
+  </Card>
+</CardGrid>

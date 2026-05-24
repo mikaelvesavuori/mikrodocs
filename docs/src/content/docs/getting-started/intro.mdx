@@ -1,0 +1,45 @@
+---
+title: What is MikroDocs?
+description: An introduction to MikroDocs, a minimal local-first writing app.
+---
+
+![MikroDocs product view](../../../assets/mikrodocs.png)
+
+:::tip[Use MikroDocs Online]
+Open [docs.mikrosuite.com](https://docs.mikrosuite.com) to use MikroDocs directly for free. It runs over HTTPS, needs no account, and keeps documents in browser storage for that site unless you export them.
+:::
+
+MikroDocs is a minimalist, local-first writing app for Markdown documents. It runs in the browser, stores documents locally for the current site, and gives you the everyday tools needed to write, find, import, and export documents without accounts, signups, or anything like that.
+
+## What's Included
+
+- **Local documents**: documents are saved in your browser (IndexedDB) for the current browser profile and origin.
+- **Markdown editor**: write Markdown with a readable preview layer, formatting toolbar, and command palette.
+- **Library tools**: create, search, duplicate, delete, and reopen local documents.
+- **Navigation**: use the outline, links, backlinks, and find/replace to move around larger documents.
+- **History**: saved versions are kept as local snapshots.
+- **File flows**: import Markdown, text, DOCX, and MikroDocs backups; export Markdown, HTML, DOCX, PDF through print, and backup JSON.
+- **Writing settings**: switch theme, font style, font scale, and autosave.
+
+## How It Works
+
+Markdown is the source of truth. When a line is not active, MikroDocs renders common Markdown structure so the document is easier to read. When you place the cursor in a line, you edit the source directly.
+
+No remote API is required for normal writing. If you deploy MikroDocs to a trusted static host, the app shell is loaded from that host, but document content stays in browser storage unless you choose an import, export, backup, or print action.
+
+## Who It Is For
+
+MikroDocs is useful for notes, project documents, technical writing, decision records, and drafts that should remain portable as Markdown.
+
+It is not a real-time collaboration tool, cloud sync service, or full Word replacement. DOCX support is intentionally simple so documents remain portable.
+
+## Get Started
+
+To run your own copy, download the static release archive:
+
+```bash
+curl -sSL -o mikrodocs.zip https://releases.mikrosuite.com/mikrodocs_latest.zip
+unzip mikrodocs.zip -d mikrodocs
+```
+
+See [Installation](../getting-started/installation) for the local serving walkthrough.

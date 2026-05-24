@@ -1,0 +1,61 @@
+{
+  "name": "mikrodocs",
+  "version": "0.0.1",
+  "description": "MikroDocs is a minimalist, local-first writing app for Markdown documents.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Mikael Vesavuori",
+  "keywords": [
+    "markdown",
+    "editor",
+    "word-processor",
+    "writing",
+    "writing-app",
+    "local-first",
+    "notes",
+    "documents",
+    "docx",
+    "indexeddb"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikaelvesavuori/mikrodocs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mikaelvesavuori/mikrodocs/issues"
+  },
+  "homepage": "https://github.com/mikaelvesavuori/mikrodocs#readme",
+  "scripts": {
+    "start": "npm run build && npx http-server dist -a ${HOST:-127.0.0.1} -p ${PORT:-8000} -c-1",
+    "docs": "npm --prefix docs run dev",
+    "docs:build": "npm --prefix docs run build",
+    "docs:preview": "npm --prefix docs run preview",
+    "clean": "rm -rf dist coverage",
+    "assets": "node ../scripts/generate-product-icons.mjs --product mikrodocs",
+    "build": "tsx esbuild.config.mts",
+    "test": "vitest run --config vitest.config.mts --coverage",
+    "test:watch": "vitest --config vitest.config.mts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --write",
+    "format": "biome format --write .",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run build && npm run docs:build",
+    "release": "npm run build && npm run sbom && npm run scan && npm run licenses && npm run release:assets",
+    "release:assets": "node scripts/create-release-assets.mjs",
+    "sbom": "mkdir -p security && syft file:package-lock.json --output spdx-json > security/sbom.spdx.json",
+    "scan": "mkdir -p security && grype sbom:security/sbom.spdx.json -o json > security/grype-report.json",
+    "licenses": "mkdir -p security && grant check security/sbom.spdx.json --config .grant.yaml > security/grant-report.txt"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.15",
+    "@types/node": "25",
+    "@vitest/coverage-v8": "4",
+    "esbuild": "latest",
+    "fake-indexeddb": "6",
+    "html-minifier-terser": "7",
+    "lightningcss": "1",
+    "tsx": "4",
+    "typescript": "6",
+    "vitest": "4"
+  }
+}

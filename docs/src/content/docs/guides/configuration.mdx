@@ -1,0 +1,14 @@
+---
+title: Configuration
+description: Runtime and browser configuration for MikroDocs.
+---
+
+MikroDocs is a static local-first app. It does not need server configuration, API credentials, or runtime secrets.
+
+## Browser Runtime
+
+Documents, settings, and history are stored in IndexedDB for the current browser profile and origin. Deploying the app at a different origin creates a separate local document library.
+
+## Optional Native Host
+
+MikroDocs can use an optional Tauri file gateway when a native host injects `window.__TAURI__`. Browser deployments use download-based import and export.

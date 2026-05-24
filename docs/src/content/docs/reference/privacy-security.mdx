@@ -1,0 +1,38 @@
+---
+title: Privacy and Security
+description: What MikroDocs stores locally and when data leaves the browser.
+---
+
+MikroDocs is local-first. Normal writing, saving, history, library search, settings, and document navigation happen in the browser for the current origin.
+
+## Local Data
+
+MikroDocs stores documents in IndexedDB and editor preferences in local storage. Document records include Markdown content, titles, timestamps, tags, and local history snapshots.
+
+The storage scope is the current browser profile and origin. A deployment at one domain cannot automatically see documents from another domain.
+
+## When Data Leaves the Browser
+
+Document content leaves the browser only when you explicitly use a file flow:
+
+- exporting Markdown, HTML, DOCX, or backup JSON
+- printing or saving PDF through the browser print dialog
+- importing Markdown, DOCX, or backup JSON from a local file
+
+External links open in a new browser context. Image URLs in Markdown may be requested by the browser when rendered.
+
+## Rendering Boundary
+
+MikroDocs escapes Markdown output by default and only allows a small safe subset of inline HTML. The static deployment also includes security headers for content type, referrer policy, frame ancestry, browser permissions, and Trusted Types where supported.
+
+Imported files should still be treated as user content. Prefer importing documents from sources you trust.
+
+## Failure Behavior
+
+If browser storage is unavailable or a save fails, MikroDocs keeps the current text in the editor, shows a failed save state, and warns before closing while unsaved changes remain. Export a Markdown file or backup before leaving that session.
+
+## Backups
+
+Backup JSON contains document content and history snapshots. MikroDocs does not encrypt backup files, so store them somewhere you trust.
+
+Report security issues through the project's published security contact rather than posting exploit details publicly.

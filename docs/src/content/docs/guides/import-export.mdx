@@ -1,0 +1,47 @@
+---
+title: Import and Export
+description: Move documents into and out of MikroDocs.
+---
+
+MikroDocs keeps documents portable. Markdown is the most reliable format, backups move the local library, and DOCX support is best-effort for simple document exchange.
+
+## Import
+
+You can import:
+
+- Markdown, `.txt`, and `.markdown` files
+- DOCX files, converted into Markdown where supported
+- MikroDocs backup JSON files
+
+Imported Markdown, text, and DOCX files become new local documents. Backup imports are reviewed first, then appended to the current library or used to replace all local documents.
+
+## Export
+
+You can export:
+
+- Markdown
+- HTML
+- DOCX with simplified styling
+- PDF through the browser print dialog
+- a ZIP of all documents as Markdown
+- backup JSON for all local documents
+
+## Markdown Source
+
+Use Markdown export when you want the safest long-term copy of one document. MikroDocs adds the document title as an H1 during export unless the document already starts with the same title.
+
+Use all-Markdown ZIP export when you want a portable folder-style copy of the whole library without MikroDocs-specific metadata.
+
+## Backups
+
+Use backup export when you want to move or save the whole local library. The backup file contains document content, titles, timestamps, tags, and local history snapshots.
+
+:::caution
+Backup JSON is not encrypted by MikroDocs. Store it somewhere you trust.
+:::
+
+## DOCX Behavior
+
+DOCX import reads the main document body and converts supported paragraphs and tables into Markdown. DOCX export writes headings, paragraphs, lists, quotes, tables, code blocks, and basic inline emphasis.
+
+Complex Word features such as comments, tracked changes, embedded media, advanced styles, and page layout are simplified or omitted.

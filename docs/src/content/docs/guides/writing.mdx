@@ -1,0 +1,84 @@
+---
+title: Writing in MikroDocs
+description: Use the editor, library, outline, commands, and Markdown tools.
+---
+
+MikroDocs is built around one document surface. You write Markdown, and inactive lines are rendered so headings, lists, links, images, tables, quotes, and code blocks are easier to scan.
+
+## Editor Basics
+
+- Use the title field for the document title.
+- Write Markdown in the main editor.
+- Use the toolbar for common formatting: bold, italic, heading, list, checklist, quote, link, code block, divider, table, and image.
+- Open the command palette with `Cmd/Ctrl+K` for save, export, import, history, settings, and reset actions.
+- Autosave is enabled by default and can be changed in Writing settings.
+- Use source mode to keep Markdown visible while reading.
+
+## Library
+
+Open the library with the folder button or `Cmd/Ctrl+O`.
+
+From the library you can:
+
+- search local documents
+- filter by extracted `#tags`
+- open a document
+- duplicate or delete a document
+- import Markdown, text, or DOCX
+- import or export a backup
+
+## Outline, Links, And Backlinks
+
+Open the outline panel to jump between headings in the current document. The same panel shows links found in the document and backlinks from other local documents.
+
+Use `[[Document title]]` to create a local document link, or insert links from the link dialog to target an external URL, a heading in the current document, or another local document.
+
+## Find And Replace
+
+Use `Cmd/Ctrl+F` to search the current document. Results are line-aware and jump back into the Markdown source. Replace next and replace all operate on the current document text.
+
+## Markdown Support
+
+MikroDocs supports the Markdown needed for practical writing:
+
+- frontmatter, hidden from rendered output
+- ATX and Setext headings
+- duplicate-safe heading anchors
+- `[[toc]]` table of contents
+- paragraphs, hard-wrapped text, and hard line breaks
+- unordered, ordered, nested, and task lists
+- blockquotes
+- callouts such as `> [!NOTE]`
+- fenced and indented code blocks
+- Mermaid source fences
+- inline code, bold, and italic
+- strikethrough
+- inline and block math styling
+- inline links, reference links, automatic links, and `[[document]]` links
+- footnotes
+- images with optional captions and `contained`, `wide`, or `small` layout hints
+- tables with alignment markers
+- horizontal rules
+- a small safe subset of inline HTML
+
+## Tables And Images
+
+Use the table dialog to insert a table, then use the command palette to add rows or columns while the cursor is inside a table.
+
+Use the image dialog for image source, description, caption, and layout. Pasted image files are inserted as data URLs. Pasted tabular text is converted to a Markdown table when possible.
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+| --- | --- |
+| `Cmd/Ctrl+K` | Command palette |
+| `Cmd/Ctrl+S` | Save |
+| `Cmd/Ctrl+F` | Find and replace |
+| `Cmd/Ctrl+O` | Library |
+| `Cmd/Ctrl+N` | New document |
+| `Cmd/Ctrl+B` | Bold |
+| `Cmd/Ctrl+I` | Italic |
+| `Cmd/Ctrl+P` | Print or save PDF |
+| `Tab` | Indent list item |
+| `Shift+Tab` | Outdent list item |
+| `?` | Shortcuts |

@@ -1,0 +1,18 @@
+---
+title: Architecture
+description: The MikroDocs runtime boundaries and storage model.
+---
+
+MikroDocs is a static browser app. The release archive contains the app shell, browser assets, manifest, icons, and service files needed for static hosting.
+
+## Runtime Boundaries
+
+- The app shell runs entirely in the browser.
+- IndexedDB stores document content and history for the current origin.
+- Local storage stores editor preferences.
+- Import, export, backup, and print are explicit user actions.
+- No backend API is required for normal writing.
+
+## Hosting Boundary
+
+Serve the extracted release archive from a stable origin. Browser storage is scoped to that origin, so moving the app to another domain gives the browser a separate document library.

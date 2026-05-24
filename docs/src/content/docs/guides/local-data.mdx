@@ -1,0 +1,46 @@
+---
+title: Local Data and Backups
+description: Understand browser storage, history snapshots, and backup files.
+---
+
+MikroDocs is local-first. Documents are saved in the browser for the current origin, and editor preferences are saved in the same browser profile.
+
+## What Is Stored
+
+Documents are stored in IndexedDB. Each document includes:
+
+- title
+- Markdown content
+- tags extracted from `#tags`
+- created, updated, and last-saved timestamps
+- local history snapshots
+
+Editor preferences are stored in local storage, including theme, font, font scale, autosave, source mode, last backup time, and the last opened document.
+
+## History
+
+Manual saves and autosaves can create document snapshots. MikroDocs keeps the newest 25 snapshots per document. Open history from the command palette to preview and restore a previous saved version.
+
+## Storage Health
+
+Open Storage and Backups from the command palette to review browser storage status, request persistent offline storage where supported, inspect embedded image weight, and export safety copies.
+
+## Backups
+
+Use backup export to download all local documents as JSON. Use backup import to review a backup file, then append it to the current library or replace every local document. You can also export the whole library as a Markdown ZIP for long-term portability.
+
+Keep backups for important writing. Browser-local storage can be removed by browser settings, profile cleanup, private browsing behavior, origin changes, or device loss.
+
+## Moving Between Deployments
+
+Browser storage is scoped to the site origin. A deployment at `https://docs.example.com` cannot automatically see documents stored at `https://example.com`.
+
+Before changing domains or browser profiles:
+
+1. Export a backup from the old origin.
+2. Open MikroDocs at the new origin.
+3. Import the backup.
+
+## When Storage Fails
+
+If IndexedDB is unavailable or a save fails, MikroDocs keeps the current text in the editor, marks saving as failed, and warns before closing with unsaved changes. Export Markdown or a backup before leaving that session.
