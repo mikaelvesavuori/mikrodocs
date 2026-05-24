@@ -6,6 +6,8 @@
   --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Monaco, Consolas, monospace;
   --font-active: var(--font-system);
   --editor-scale: 1;
+  --editor-font-size: calc(18px * var(--editor-scale));
+  --editor-line-height: calc(var(--editor-font-size) * 1.72);
 
   --color-bg: #f4f6f9;
   --color-bg-top: #f8fafc;
@@ -309,8 +311,8 @@ textarea:focus-visible {
   overflow: hidden;
   color: var(--text-main);
   font-family: var(--font-active);
-  font-size: calc(18px * var(--editor-scale));
-  line-height: 1.72;
+  font-size: var(--editor-font-size);
+  line-height: var(--editor-line-height);
   overflow-wrap: break-word;
   pointer-events: none;
   tab-size: 2;
@@ -322,15 +324,16 @@ textarea:focus-visible {
 }
 
 .pretty-line {
-  min-height: calc(18px * var(--editor-scale) * 1.72);
+  min-height: var(--editor-line-height);
+  line-height: var(--editor-line-height);
 }
 
 .pretty-heading-line {
-  margin-top: 1.15em;
+  margin-top: 0;
 }
 
 .pretty-heading-line-after-heading {
-  margin-top: 0.42em;
+  margin-top: 0;
 }
 
 .pretty-heading-line:first-child {
@@ -338,7 +341,7 @@ textarea:focus-visible {
 }
 
 .pretty-blank-line {
-  height: calc(8px * var(--editor-scale));
+  height: var(--editor-line-height);
 }
 
 .pretty-line[data-active="true"] {
@@ -351,7 +354,7 @@ textarea:focus-visible {
 
 .pretty-heading {
   color: var(--text-main);
-  line-height: 1.24;
+  line-height: var(--editor-line-height);
 }
 
 .pretty-heading-1,
@@ -467,6 +470,15 @@ textarea:focus-visible {
   text-underline-offset: 0.18em;
 }
 
+.pretty-editor .prose {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.pretty-editor .prose pre code {
+  line-height: inherit;
+}
+
 .editor {
   position: relative;
   z-index: 2;
@@ -477,8 +489,8 @@ textarea:focus-visible {
   background: transparent;
   color: transparent;
   font-family: var(--font-active);
-  font-size: calc(18px * var(--editor-scale));
-  line-height: 1.72;
+  font-size: var(--editor-font-size);
+  line-height: var(--editor-line-height);
   caret-color: var(--accent);
   overflow: hidden;
   tab-size: 2;

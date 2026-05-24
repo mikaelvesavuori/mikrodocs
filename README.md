@@ -4,9 +4,9 @@
 
 ![MikroDocs product view](./mikrodocs.png)
 
-Use MikroDocs online for free at [docs.mikrosuite.com](https://docs.mikrosuite.com). It runs directly in the browser over HTTPS, needs no account, and stores documents privately in browser storage for that site unless you export them.
-
 MikroDocs is an ultra-minimal, local-first writing app for modern browsers. It gives you a fast markdown editor, document library, import/export tools, and browser-local storage without sending your documents anywhere.
+
+_Use MikroDocs online for free at [docs.mikrosuite.com](https://docs.mikrosuite.com). It runs directly in the browser over HTTPS, needs no account, and stores documents privately in browser storage for that site unless you export them._
 
 ## Why MikroDocs
 

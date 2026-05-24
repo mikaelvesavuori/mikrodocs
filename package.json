@@ -1,6 +1,6 @@
 {
   "name": "mikrodocs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MikroDocs is a minimalist, local-first writing app for Markdown documents.",
   "type": "module",
   "license": "MIT",
