@@ -36,15 +36,17 @@
     "test": "vitest run --config vitest.config.mts --coverage",
     "test:watch": "vitest --config vitest.config.mts",
     "typecheck": "tsc --noEmit",
-    "lint": "biome check .",
-    "lint:fix": "biome check . --write",
-    "format": "biome format --write .",
+    "lint": "biome check src tests types scripts esbuild.config.mts vitest.config.mts package.json tsconfig.json biome.json",
+    "lint:fix": "biome check src tests types scripts esbuild.config.mts vitest.config.mts package.json tsconfig.json biome.json --write",
+    "format": "biome format --write src tests types scripts esbuild.config.mts vitest.config.mts package.json tsconfig.json biome.json",
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build && npm run docs:build",
     "release": "npm run build && npm run sbom && npm run scan && npm run licenses && npm run release:assets",
     "release:assets": "node scripts/create-release-assets.mjs",
     "sbom": "mkdir -p security && syft file:package-lock.json --output spdx-json > security/sbom.spdx.json",
     "scan": "mkdir -p security && grype sbom:security/sbom.spdx.json -o json > security/grype-report.json",
-    "licenses": "mkdir -p security && grant check security/sbom.spdx.json --config .grant.yaml > security/grant-report.txt"
+    "licenses": "mkdir -p security && grant check security/sbom.spdx.json --config .grant.yaml > security/grant-report.txt",
+    "precommit": "npm run lint && npm run typecheck && npm run test",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
@@ -56,6 +58,10 @@
     "lightningcss": "1",
     "tsx": "4",
     "typescript": "6",
-    "vitest": "4"
-  }
+    "vitest": "4",
+    "husky": "9.1.7"
+  },
+  "workspaces": [
+    "docs"
+  ]
 }

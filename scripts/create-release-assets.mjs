@@ -13,23 +13,25 @@ const rootDir = path.resolve(scriptDir, "..");
 const releaseDir = path.join(rootDir, "release");
 const stagingDir = path.join(releaseDir, "_staging");
 const config = {
-  "name": "mikrodocs",
-  "bundles": [
+  name: "mikrodocs",
+  bundles: [
     {
-      "kind": "",
-      "title": "MikroDocs App",
-      "entries": [
+      kind: "",
+      title: "MikroDocs App",
+      entries: [
         {
-          "from": "dist",
-          "into": "."
-        }
-      ]
-    }
-  ]
+          from: "dist",
+          into: ".",
+        },
+      ],
+    },
+  ],
 };
 
 function normalizeVersion(input) {
-  return String(input || "").trim().replace(/^v/, "");
+  return String(input || "")
+    .trim()
+    .replace(/^v/, "");
 }
 
 async function readPackageVersion() {
@@ -50,7 +52,7 @@ async function copyEntry(entry, targetDir) {
   const source = path.join(rootDir, entry.from);
   if (!(await exists(source))) {
     if (entry.optional) return;
-    throw new Error("Missing release input: " + entry.from);
+    throw new Error(`Missing release input: ${entry.from}`);
   }
 
   const target = path.join(targetDir, entry.into || path.basename(entry.from));
@@ -97,7 +99,7 @@ async function main() {
 
   for (const bundle of config.bundles) {
     const artifactStem = [config.name, bundle.kind].filter(Boolean).join("_");
-    const bundleDirName = artifactStem + "_" + version;
+    const bundleDirName = `${artifactStem}_${version}`;
     const bundleDir = path.join(stagingDir, bundleDirName);
     await mkdir(bundleDir, { recursive: true });
 
@@ -109,8 +111,8 @@ async function main() {
     await copyIfExists("LICENSE", bundleDir);
     await copySecurityReports(bundleDir);
 
-    const versionedZip = artifactStem + "_" + version + ".zip";
-    const latestZip = artifactStem + "_latest.zip";
+    const versionedZip = `${artifactStem}_${version}.zip`;
+    const latestZip = `${artifactStem}_latest.zip`;
     await createZip(versionedZip, bundleDirName);
     await createZip(latestZip, bundleDirName);
     artifacts.push(versionedZip, latestZip);
@@ -118,18 +120,18 @@ async function main() {
 
   const sums = [];
   for (const artifact of artifacts) {
-    sums.push((await sha256(path.join(releaseDir, artifact))) + "  " + artifact);
+    sums.push(`${await sha256(path.join(releaseDir, artifact))}  ${artifact}`);
   }
-  await writeFile(path.join(releaseDir, "SHA256SUMS.txt"), sums.join("\n") + "\n", "utf8");
+  await writeFile(path.join(releaseDir, "SHA256SUMS.txt"), `${sums.join("\n")}\n`, "utf8");
   await rm(stagingDir, { force: true, recursive: true });
 
-  process.stdout.write("Created release assets in " + path.relative(rootDir, releaseDir) + "\n");
+  process.stdout.write(`Created release assets in ${path.relative(rootDir, releaseDir)}\n`);
   for (const artifact of artifacts) {
-    process.stdout.write("- " + artifact + "\n");
+    process.stdout.write(`- ${artifact}\n`);
   }
 }
 
 main().catch((error) => {
-  process.stderr.write((error instanceof Error ? error.message : String(error)) + "\n");
+  process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
   process.exitCode = 1;
 });

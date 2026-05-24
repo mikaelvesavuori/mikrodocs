@@ -63,7 +63,7 @@ jobs:
           if-no-files-found: error
 
       - name: Publish GitHub release assets
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           generate_release_notes: true
           files: |
@@ -79,7 +79,13 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
-          for file in release/*.zip release/SHA256SUMS.txt; do
+          product="$(node -p 'require("./package.json").name')"
+
+          for file in release/*.zip; do
             name="$(basename "$file")"
-            wrangler r2 object put "${{ vars.CLOUDFLARE_R2_BUCKET_NAME }}/release/$name" --file="$file" --jurisdiction=eu --remote
+            wrangler r2 object put "${{ vars.CLOUDFLARE_R2_BUCKET_NAME }}/$name" --file="$file" --jurisdiction=eu --remote
           done
+
+          if [ -f release/SHA256SUMS.txt ]; then
+            wrangler r2 object put "${{ vars.CLOUDFLARE_R2_BUCKET_NAME }}/${product}_SHA256SUMS.txt" --file="release/SHA256SUMS.txt" --jurisdiction=eu --remote
+          fi
